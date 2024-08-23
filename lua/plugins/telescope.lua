@@ -30,8 +30,15 @@ return {
 			-- See `:help telescope` and `:help telescope.setup()`
 			require("telescope").setup({
 				defaults = {
+					layout_strategy = "horizontal",
+					layout_config = {
+						height = 0.9,
+						width = 0.9,
+						prompt_position = "top",
+					},
 					file_ignore_patterns = {
 						"node_modules",
+						"dist",
 					},
 					mappings = {
 						i = {
