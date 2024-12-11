@@ -273,7 +273,13 @@ require("mason-lspconfig").setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-	tsserver = {},
+	ts_ls = {
+		on_attach = function(client)
+			-- this is important, otherwise tsserver will format ts/js
+			-- files which we *really* don't want.
+			client.server_capabilities.documentFormattingProvider = false
+		end,
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -282,10 +288,11 @@ local servers = {
 			-- diagnostics = { disable = { 'missing-fields' } },
 		},
 	},
+	biome = {},
 }
 
 -- Setup neovim lua configuration
-require("neodev").setup()
+-- require("neodev").setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -355,10 +362,10 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = {
+		{ name = "codeium" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "codeium" },
 	},
 })
 
@@ -384,6 +391,9 @@ vim.api.nvim_set_keymap("n", "}", "{", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "{", "}", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "}", "{", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "{", "}", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>nf", vim.lsp.buf.format, { desc = "[N]eovim [F]ormat" })
+
 -- [[ Configure GitHub links ]]
 -- for repository page
 -- for current file page
