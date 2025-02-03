@@ -14,6 +14,7 @@ return {
         null_ls.builtins.formatting.stylua,
         require("none-ls.formatting.jq"),
         null_ls.builtins.formatting.biome,
+        null_ls.builtins.formatting.prettier,
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
