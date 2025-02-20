@@ -1,5 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     "nvimtools/none-ls-extras.nvim",
@@ -10,6 +11,16 @@ return {
 
     null_ls.setup({
       debug = true,
+      log = {
+        enable = true,
+        level = "trace",     -- Set to most verbose level
+        use_console = false, -- Don't clutter console, use log file
+      },
+      sources = {
+        null_ls.builtins.formatting.biome,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.prettierd,
+      },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
           vim.api.nvim_clear_autocmds({
