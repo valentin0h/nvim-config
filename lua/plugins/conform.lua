@@ -20,20 +20,27 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "biome", "format", stop_after_first = true },
+      typescript = { "biome", "prettierd", stop_after_first = true },
+      typescriptreact = { "biome", "prettierd", stop_after_first = true },
+      javascript = { "biome", "prettierd", stop_after_first = true },
+      javascriptreact = { "biome", "prettierd", stop_after_first = true },
+      yaml = { "prettierd" },
     },
     -- Set default options
     default_format_opts = {
       lsp_format = "fallback",
     },
     -- Set up format-on-save
-    format_on_save = { timeout_ms = 500 },
+    format_on_save = {
+      timeout_ms = 500,
+    },
     -- Customize formatters
     formatters = {
       shfmt = {
         prepend_args = { "-i", "2" },
       },
     },
+    log_level = vim.log.levels.DEBUG,
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it

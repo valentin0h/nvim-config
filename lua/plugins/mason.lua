@@ -74,10 +74,9 @@ return {
             -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
-        biome = {
-
-          single_file_support = true,
-        },
+        -- biome = {
+        --   single_file_support = true,
+        -- },
       }
       -- mason_lspconfig.setup({
       --   ensure_installed = vim.tbl_keys(servers),
