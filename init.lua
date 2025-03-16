@@ -126,5 +126,6 @@ vim.api.nvim_set_keymap("v", "{", "}", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>nf", vim.lsp.buf.format, { desc = "[N]eovim [F]ormat" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code [A]action" })
 
+vim.keymap.set("n", "<Leader>w", "<C-W>", { noremap = true, silent = true })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
